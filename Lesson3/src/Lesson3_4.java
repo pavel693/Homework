@@ -8,7 +8,10 @@ public class Lesson3_4 {
     final static String GOOD = "good";
     final static String GREAT = "great";
     final static String EXCELLENT = "excellent";
-
+    final static double POORTIPS = 0.05;
+    final static double GOODTIPS = 0.1;
+    final static double GREATTIPS = 0.15;
+    final static double EXCELTIPS = 0.2;
 
     public static void main(String args[]) {
 
@@ -25,19 +28,19 @@ public class Lesson3_4 {
         }
 
         if (service.equals(POOR)) {
-            System.out.println("The service was poor, that's why amount of tips - " + (total * 0.05));
+            System.out.println("The service was poor, that's why amount of tips - " + (total * POORTIPS));
         }
 
         if (service.equals(GOOD)) {
-            System.out.println("The service was good, that's why amount of tips - " + (total * 0.1));
+            System.out.println("The service was good, that's why amount of tips - " + (total * GOODTIPS));
         }
 
         if (service.equals(GREAT)) {
-            System.out.println("The service was great, that's why amount of tips - " + (total * 0.15));
+            System.out.println("The service was great, that's why amount of tips - " + (total * GREATTIPS));
         }
 
         if (service.equals(EXCELLENT)) {
-            System.out.println("The service was excellent, that's why amount of tips - " + (total * 0.2));
+            System.out.println("The service was excellent, that's why amount of tips - " + (total * EXCELTIPS));
         }
 
     }
