@@ -1,22 +1,28 @@
-
-
 public class Lesson5_1 {
 
     public static void main(String[] args) {
-
-        int[][] array = new int[12][12];
-        int firstElement = 1;
+        int SIZE = 12;
+        int[][] array = new int[SIZE][SIZE];
         int i = 0;
         int j = 0;
 
         for (i = 0; i <= j && i < array.length; i++) {
             for (j = 0; j <= i && j < array.length; j++) {
                 array[i][j] = Lesson5_1.binomialCoefficient(i, j);
+                System.out.print("\t" + array[i][j]);
             }
+            System.out.println();
         }
-        System.out.println(array[9][4]);
-        System.out.println(array[10][5]);
-        System.out.println(array[11][6]);
+        for (i = 0; i <= j && i < array.length; i++) {
+            for (j = 0; j <= i && j < array.length; j++) {
+                String tab = "\t";
+                for (int k = 1; k < (SIZE  - i)/2 && j == 0; k++) {
+                    tab = tab + "\t";
+                }
+                System.out.print(tab + array[i][j]);
+            }
+            System.out.println();
+        }
     }
 
     public static int factorial(int a) {

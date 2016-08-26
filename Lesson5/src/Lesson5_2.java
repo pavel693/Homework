@@ -2,41 +2,46 @@
 public class Lesson5_2 {
     public static void main(String[] args) {
 
-        int[][] array = new int[4][4];
+        int SIZE = 10;
+        int[][] array = new int[SIZE][SIZE];
         int counter = 1;
 
-        for (int j = 0; j < array.length; j++) {
-            int i = 0;
-            array[i][j] = counter;
-            counter++;
+        int width = SIZE - 1;
+        int hight = SIZE - 1;
+
+        int reverse = 0;
+        int i = 0;
+        int j = 0;
+
+        while (counter < SIZE * SIZE) {
+            while (j < width) {
+                array[i][j] = counter++;
+                j++;
+            }
+            while (i < hight) {
+                array[i][j] = counter++;
+                i++;
+            }
+            while (j > reverse) {
+                array[i][j] = counter++;
+                j--;
+            }
+            width--;
+            hight--;
+            reverse++;
+            while (i > reverse) {
+                array[i][j] = counter++;
+                i--;
+            }
         }
-        for (int i = 1; i < array.length; i++) {
-            int j = 3;
-            array[i][j] = counter;
-            counter++;
+        if (counter == SIZE * SIZE) {
+            array[i][j] = counter++;
         }
-        for (int j = 2; j >= 0; j--) {
-            int i = 3;
-            array[i][j] = counter;
-            counter++;
+        for (int x = 0; x < array.length; x++) {
+            for (int y = 0; y < array.length; y++) {
+                System.out.print("\t" + array[x][y]);
+            }
+            System.out.println();
         }
-        for (int i = 2; i > 0; i--) {
-            int j = 0;
-            array[i][j] = counter;
-            counter++;
-        }
-        for (int j = 1; j < 3; j++) {
-            int i=1;
-            array[i][j]=counter;
-            counter++;
-        }
-        for (int j=2; j>0; j--) {
-            int i=2;
-            array[i][j]=counter;
-            counter++;
-        }
-        System.out.println(array[1][1]);
-        System.out.println(array[2][2]);
-        System.out.println(array[2][1]);
     }
 }
