@@ -1,8 +1,8 @@
 public class Lesson5_1 {
 
     public static void main(String[] args) {
-        int SIZE = 12;
-        int[][] array = new int[SIZE][SIZE];
+        int size = 12;
+        int[][] array = new int[size][size];
         int i = 0;
         int j = 0;
 
@@ -16,7 +16,7 @@ public class Lesson5_1 {
         for (i = 0; i <= j && i < array.length; i++) {
             for (j = 0; j <= i && j < array.length; j++) {
                 String tab = "\t";
-                for (int k = 1; k < (SIZE  - i)/2 && j == 0; k++) {
+                for (int k = 1; k < (size  - i)/2 && j == 0; k++) {
                     tab = tab + "\t";
                 }
                 System.out.print(tab + array[i][j]);
