@@ -1,22 +1,36 @@
 package ua.od.hillel;
 
 public class ArrayJoin {
-    public static int[] arayJoin(int[] array1, int[] array2) {
+    public static int[] arrayJoin(int[] array1, int[] array2) {
 
         int[] arrayJoin = new int[array1.length + array2.length];
-        int counter = 0;
 
-        for (int i = 0; i < array1.length; i++) {
-            arrayJoin[i] = array1[i];
-            counter = i;
+        if (array1.length <= array2.length) {
+            arrayJoin = arraySum(array1, array2);
         }
-        counter++;
-        for (int i = 0; i < array2.length; i++) {
-            arrayJoin[counter] = array2[i];
+        if (array2.length < array1.length) {
+            arrayJoin = arraySum(array2, array1);
+        }
+        return arrayJoin;
+    }
+
+    static int[] arraySum(int[] array1, int[] array2) {
+        int[] arraySum = new int[array1.length + array2.length];
+        int counter = 0;
+        for (int i = 0; i < array1.length; i++) {
+            if (array1[i] < array2[i]) {
+                arraySum[i + i] = array1[i];
+                arraySum[i + i + 1] = array2[i];
+            } else {
+                arraySum[i + i] = array2[i];
+                arraySum[i + i + 1] = array1[i];
+            }
             counter++;
         }
-
-        return arrayJoin;
+        for (int i = counter; i < array2.length; i++) {
+            arraySum[i + array1.length] = array2[i];
+        }
+        return arraySum;
     }
 
     public static int[] arraySort(int[] array) {
@@ -32,5 +46,11 @@ public class ArrayJoin {
             }
         }
         return array;
+    }
+
+    public static void printArray(int[] array) {
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i] + ", ");
+        }
     }
 }
