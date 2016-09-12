@@ -1,3 +1,5 @@
+package ua.od.hillel;
+
 import ua.od.hillel.ArrayJoin;
 
 public class ArrayJoinMain {
