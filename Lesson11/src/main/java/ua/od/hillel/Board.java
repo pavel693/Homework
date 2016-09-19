@@ -32,11 +32,10 @@ public class Board {
 
         if (board[i][j] != playerFirst.getType() && board[i][j] != playerSecond.getType()) {
             board[i][j] = currentPlayer.getType();
+            changePlayer();
         } else {
-            System.out.println("You can't change the value of this field, because it is not free. Turn passes to the next player.");
+            System.out.println("You have last chance to do a right turn, you should choose free field on the board");
         }
-        changePlayer();
-
         return true;
     }
 
@@ -53,16 +52,59 @@ public class Board {
     }
 
     private void findWinner() {
-        //todo calculate player correctly
-        winner = playerFirst;
+        if (board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) {
+            if (playerFirst.getType() == board[0][0]) {
+                winner = playerFirst;
+            } else {
+                winner = playerSecond;
+            }
+        }
+        if (board[1][0] != ' ' && board[1][0] == board[1][1] && board[1][1] == board[1][2]) {
+            if (playerFirst.getType() == board[1][0]) {
+                winner = playerFirst;
+            } else {
+                winner = playerSecond;
+            }
+        }
+        if (board[2][0] != ' ' && board[2][0] == board[2][1] && board[2][1] == board[2][2]) {
+            if (playerFirst.getType() == board[2][0]) {
+                winner = playerFirst;
+            } else {
+                winner = playerSecond;
+            }
+        }
+        if (board[0][0] != ' ' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+            if (playerFirst.getType() == board[0][0]) {
+                winner = playerFirst;
+            } else {
+                winner = playerSecond;
+            }
+        }
+        if (board[0][2] != ' ' && board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+            if (playerFirst.getType() == board[0][2]) {
+                winner = playerFirst;
+            } else {
+                winner = playerSecond;
+            }
+        }
     }
 
     public boolean gameFinished() {
-        //todo finish the function
-        if (board[0][0] == 'X' && board[0][1] == 'X' && board[0][2] == 'X') {
+        if (board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][1] == board[0][2]) {
             return true;
         }
-
+        if (board[1][0] != ' ' && board[1][0] == board[1][1] && board[1][1] == board[1][2]) {
+            return true;
+        }
+        if (board[2][0] != ' ' && board[2][0] == board[2][1] && board[2][1] == board[2][2]) {
+            return true;
+        }
+        if (board[0][0] != ' ' && board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
+            return true;
+        }
+        if (board[0][2] != ' ' && board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
+            return true;
+        }
         return false;
     }
 
@@ -75,16 +117,23 @@ public class Board {
     }
 
     public void printBoard() {
-        //todo add symbols to show board
         for (int i = 0; i < 3; i++) {
+            if (i > 0) {
+                System.out.println("---------");
+            }
             for (int j = 0; j < 3; j++) {
-                System.out.print(board[i][j] + " ");
+                if (j < 2) {
+                    System.out.print(board[i][j] + " | ");
+                } else {
+                    System.out.print(board[i][j]);
+                }
             }
             System.out.println();
         }
     }
 
     public Player getWinner() {
+        findWinner();
         return winner;
     }
 }
