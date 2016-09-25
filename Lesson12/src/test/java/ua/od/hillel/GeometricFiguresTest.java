@@ -28,7 +28,7 @@ public class GeometricFiguresTest {
     @Test
     public void SquareAreaTest() {
         Square square = new Square(5);
-        assertThat(square.area(), is(25));
+        assertThat(square.area(), is(25.));
     }
 
     @Test
@@ -40,7 +40,7 @@ public class GeometricFiguresTest {
     @Test
     public void RectangleAreaTest() {
         Rectangle rectangle = new Rectangle(3, 4);
-        assertThat(rectangle.area(), is(12));
+        assertThat(rectangle.area(), is(12.));
     }
 
 }

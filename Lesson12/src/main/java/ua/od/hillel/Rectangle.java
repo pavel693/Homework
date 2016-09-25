@@ -9,17 +9,23 @@ public class Rectangle extends GeometricFigures {
         this.secondSide = secondSide;
     }
 
+    @Override
     public int perimeter() {
         return (firstSide + secondSide) * 2;
     }
 
-    public int area() {
+    @Override
+    public double area() {
         return firstSide * secondSide;
     }
 
     @Override
-    public void info() {
-        System.out.println("Perimeter of rectangle is: " + perimeter());
-        System.out.println("Area of rectangle is: " + area());
+    public String toString() {
+        return "Rectangle{" +
+                "firstSide=" + firstSide +
+                ", secondSide=" + secondSide +
+                ", perimeter=" + perimeter() +
+                ", area=" + area() +
+                '}';
     }
 }

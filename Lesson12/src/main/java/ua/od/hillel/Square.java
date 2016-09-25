@@ -7,17 +7,22 @@ public class Square extends GeometricFigures {
         this.oneSide = oneSide;
     }
 
+    @Override
     public int perimeter() {
         return oneSide * 4;
     }
 
-    public int area() {
+    @Override
+    public double area() {
         return oneSide * oneSide;
     }
 
     @Override
-    public void info() {
-        System.out.println("Perimeter of square is: " + perimeter());
-        System.out.println("Area of square is: " + area());
+    public String toString() {
+        return "Square{" +
+                "oneSide=" + oneSide +
+                ", perimeter=" + perimeter() +
+                ", area=" + area() +
+                '}';
     }
 }

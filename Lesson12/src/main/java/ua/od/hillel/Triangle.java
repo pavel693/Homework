@@ -11,18 +11,25 @@ public class Triangle extends GeometricFigures {
         this.thirdSide = thirdSide;
     }
 
+    @Override
     public int perimeter() {
         return firstSide + secondSide + thirdSide;
     }
 
+    @Override
     public double area() {
         double semiperimeter = perimeter() / 2;
         return Math.sqrt(semiperimeter * (semiperimeter - firstSide) * (semiperimeter - secondSide) * (semiperimeter - thirdSide));
     }
 
     @Override
-    public void info() {
-        System.out.println("Perimeter of triangle is: " + perimeter());
-        System.out.println("Area of triangle is: " + area());
+    public String toString() {
+        return "Triangle{" +
+                "firstSide=" + firstSide +
+                ", secondSide=" + secondSide +
+                ", thirdSide=" + thirdSide +
+                ", perimeter=" + perimeter() +
+                ", area=" + area() +
+                '}';
     }
 }

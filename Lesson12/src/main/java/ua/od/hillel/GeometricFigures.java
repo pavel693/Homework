@@ -4,6 +4,16 @@ public class GeometricFigures {
     GeometricFigures() {
     }
 
-    public void info() {
+    public int perimeter() {
+        return 0;
+    }
+
+    public double area() {
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "GeometricFigures{}";
     }
 }

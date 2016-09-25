@@ -5,11 +5,15 @@ public class GeometricFiguresMain {
         GeometricFigures triangle = new Triangle(3, 4, 5);
         GeometricFigures square = new Square(3);
         GeometricFigures rectangle = new Rectangle(3, 4);
-        GeometricFigures geometricfigures[] = {triangle, square, rectangle};
+        GeometricFigures geometricFiguresArray[] = {triangle, square, rectangle};
 
-        for (int i = 0; i < geometricfigures.length; i++) {
-            geometricfigures[i].info();
+        for (GeometricFigures geometricFigures : geometricFiguresArray) {
+            System.out.println(geometricFigures.perimeter());
+            System.out.println(geometricFigures.area());
             System.out.println();
+        }
+        for (GeometricFigures geometricFigures : geometricFiguresArray) {
+            System.out.println(geometricFigures.toString());
         }
     }
 }
