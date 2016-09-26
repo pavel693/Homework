@@ -22,19 +22,26 @@ public class Board {
         fillBoard();
     }
 
-    public boolean makeMove(String move) {
-        if (!validateMove(move)) {
-            return false;
-        }
+    public boolean makeMove() {
+        String move = currentPlayer.enterMove();
 
         int i = move.charAt(0) - '0';
         int j = move.charAt(1) - '0';
+
+        if (i > 2) {
+            System.out.println("You have one more chance to do a right turn, you should choose free field on the board");
+            return true;
+        }
+        if (j > 2) {
+            System.out.println("You have one more chance to do a right turn, you should choose free field on the board");
+            return true;
+        }
 
         if (board[i][j] != playerFirst.getType() && board[i][j] != playerSecond.getType()) {
             board[i][j] = currentPlayer.getType();
             changePlayer();
         } else {
-            System.out.println("You have last chance to do a right turn, you should choose free field on the board");
+            System.out.println("You have one more chance to do a right turn, you should choose free field on the board");
         }
         return true;
     }
@@ -45,10 +52,6 @@ public class Board {
         } else {
             currentPlayer = playerFirst;
         }
-    }
-
-    private boolean validateMove(String move) {
-        return true;
     }
 
     private void findWinner() {
@@ -156,18 +159,23 @@ public class Board {
 
     public void printBoard() {
         for (int i = 0; i < 3; i++) {
+            if (i == 0) {
+                System.out.println("╔═════════╗");
+            }
             if (i > 0) {
-                System.out.println("---------");
+                System.out.println("╠═════════╣");
             }
             for (int j = 0; j < 3; j++) {
-                if (j < 2) {
-                    System.out.print(board[i][j] + " | ");
-                } else {
-                    System.out.print(board[i][j]);
+                if (j == 0) {
+                    System.out.print("║ " + board[i][j] + " ║");
+                }
+                if (j > 0) {
+                    System.out.print(" " + board[i][j] + " ║");
                 }
             }
             System.out.println();
         }
+        System.out.println("╚═════════╝");
     }
 
     public Player getWinner() {

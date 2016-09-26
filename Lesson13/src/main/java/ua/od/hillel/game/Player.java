@@ -1,6 +1,6 @@
 package ua.od.hillel.game;
 
-public class Player {
+abstract class Player {
 
     private String name;
     private int age;
@@ -23,4 +23,6 @@ public class Player {
     public int getAge() {
         return age;
     }
+
+    public abstract String enterMove();
 }
