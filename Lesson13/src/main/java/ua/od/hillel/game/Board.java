@@ -1,7 +1,5 @@
 package ua.od.hillel.game;
 
-import java.util.Arrays;
-
 public class Board {
 
     public static final int BOARD_SIZE = 3;
@@ -39,7 +37,7 @@ public class Board {
         return true;
     }
 
-    public char getChar(int i, int j) {
+    private char getChar(int i, int j) {
         char a = board[i][j];
         return a;
     }
