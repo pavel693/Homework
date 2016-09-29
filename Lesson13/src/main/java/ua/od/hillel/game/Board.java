@@ -1,5 +1,7 @@
 package ua.od.hillel.game;
 
+import java.util.Arrays;
+
 public class Board {
 
     public static final int BOARD_SIZE = 3;
@@ -24,26 +26,22 @@ public class Board {
 
     public boolean makeMove() {
         String move = currentPlayer.enterMove();
-
         int i = move.charAt(0) - '0';
         int j = move.charAt(1) - '0';
 
-        if (i > 2) {
-            System.out.println("You have one more chance to do a right turn, you should choose free field on the board");
-            return true;
+        MoveValidator moveValidator = new MoveValidator();
+        if (!moveValidator.validateMove(move, getChar(i, j))) {
+            return false;
         }
-        if (j > 2) {
-            System.out.println("You have one more chance to do a right turn, you should choose free field on the board");
-            return true;
-        }
+        board[i][j] = currentPlayer.getType();
+        changePlayer();
 
-        if (board[i][j] != playerFirst.getType() && board[i][j] != playerSecond.getType()) {
-            board[i][j] = currentPlayer.getType();
-            changePlayer();
-        } else {
-            System.out.println("You have one more chance to do a right turn, you should choose free field on the board");
-        }
         return true;
+    }
+
+    public char getChar(int i, int j) {
+        char a = board[i][j];
+        return a;
     }
 
     private void changePlayer() {
