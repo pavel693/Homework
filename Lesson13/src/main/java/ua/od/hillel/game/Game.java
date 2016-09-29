@@ -8,19 +8,9 @@ public class Game {
         Player playerSecond = new Human("Mike", 35, 'O');
 
         Board board = new Board(playerFirst, playerSecond);
+        StartGame game = new StartGame();
 
-        while (!board.gameFinished()) {
-            board.makeMove();
-            board.printBoard();
-        }
+        game.startGame(board, playerFirst, playerSecond);
 
-        Player player = board.getWinner();
-        if (board.winner != null) {
-            System.out.println("");
-            System.out.println("Winner is " + player.getName() + " " + player.getAge());
-        } else {
-            System.out.println("");
-            System.out.println("Dead Heat");
-        }
     }
 }
