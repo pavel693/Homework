@@ -28,7 +28,10 @@ public class Board {
         int j = move.charAt(1) - '0';
 
         MoveValidator moveValidator = new MoveValidator();
-        if (!moveValidator.validateMove(move, getChar(i, j))) {
+        if (!moveValidator.validateMove(move)) {
+            return false;
+        }
+        if (!moveValidator.validateMove(getChar(i, j))) {
             return false;
         }
         board[i][j] = currentPlayer.getType();
@@ -177,5 +180,13 @@ public class Board {
     public Player getWinner() {
         findWinner();
         return winner;
+    }
+
+    public String resultOfPlay() {
+        if (getWinner() == null) {
+            return "draw";
+        } else {
+            return "winner";
+        }
     }
 }
