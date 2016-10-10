@@ -10,10 +10,13 @@ public class GameMain {
         Player playerFirst = new AI("AI", 0, 'X');
         Player playerSecond = new Human("Mike", 35, 'O');
         Board board = new Board(playerFirst, playerSecond);
+        Statistics statistics = new Statistics();
 
         do {
             BoardGame ticTacToe = new TicTacToe(board, playerFirst, playerSecond);
             ticTacToe.startGame();
+            GameResult result = new GameResult(board.getWinner(), new Date(), board.resultOfPlay());
+            statistics.addResult(result);
             Scanner scanner = new Scanner(System.in);
             System.out.println("Do you want to play one more time");
             if (scanner.nextLine().equals("yes")) {
@@ -23,10 +26,6 @@ public class GameMain {
                 start = false;
             }
         } while (start);
-
-        GameResult result = new GameResult(board.getWinner(), new Date(), board.resultOfPlay());
-        Statistics statistics = new Statistics();
-        statistics.addResult(result);
-        System.out.println(statistics.toString());
+        System.out.println(statistics);
     }
 }
