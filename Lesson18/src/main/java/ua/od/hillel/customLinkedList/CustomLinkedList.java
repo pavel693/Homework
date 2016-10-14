@@ -61,6 +61,27 @@ public class CustomLinkedList {
         return null;
     }
 
+    public String findElementFromEndAnother(int number) {
+        Node nodeTurtle = firstNode;
+        Node nodeHare = firstNode;
+        int firstCounter = 1;
+        int secondCounter = 1;
+        while (nodeTurtle.next != null) {
+            if (nodeHare.next == lastNode) {
+                nodeHare = nodeHare.next;
+                firstCounter++;
+            }
+            if (nodeHare.next != null) {
+                nodeHare = nodeHare.next.next;
+                firstCounter += 2;
+            }
+            if (nodeHare.next == null && secondCounter == firstCounter - number) return nodeTurtle.next.value;
+            nodeTurtle = nodeTurtle.next;
+            secondCounter++;
+        }
+        return null;
+    }
+
     @Override
     public String toString() {
         String result = "[";
