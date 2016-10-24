@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane hgap="10" vgap="10" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+          fx:controller="com.kharchenkoPavel.ticTacToe.ProfileController">
+    <padding>
+        <Insets bottom="10" left="10" right="10" top="10"/>
+    </padding>
+
+    <children>
+        <Label text="Firstname" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="0"/>
+
+        <TextField fx:id="firstname" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="0"/>
+
+        <Label text="Lastname" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="1"/>
+
+        <TextField fx:id="lastname" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1"/>
+
+        <Label text="Age" GridPane.columnIndex="0" GridPane.halignment="RIGHT" GridPane.rowIndex="2"/>
+
+        <TextField fx:id="age" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2"/>
+
+        <HBox alignment="CENTER" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+            <children>
+                <Button onAction="#okAction" text="OK"/>
+                <Button mnemonicParsing="false" text="Button"/>
+            </children>
+        </HBox>
+    </children>
+    <columnConstraints>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+    </rowConstraints>
+</GridPane>
