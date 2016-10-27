@@ -23,6 +23,32 @@ public class CustomLinkedList {
         }
     }
 
+    public String getElement(int index) {
+        if (index <= 0) {
+            try {
+                throw new CustomArrayListOutOfBoundsException("The index can't be less than 1");
+            } catch (CustomArrayListOutOfBoundsException message) {
+                message.printStackTrace();
+            }
+        } else {
+            Node node = firstNode;
+            int counter = 1;
+            while (counter < index) {
+                if (node.equals(lastNode) && counter < index) {
+                    try {
+                        throw new CustomArrayListOutOfBoundsException("There is no element with this index in the LinkedList");
+                    } catch (CustomArrayListOutOfBoundsException message) {
+                        message.printStackTrace();
+                    }
+                }
+                node = node.next;
+                counter++;
+            }
+            return node.value;
+        }
+        return null;
+    }
+
     public void introduceCycle(int index) {
         Node current = firstNode;
         int currentIndex = 0;
