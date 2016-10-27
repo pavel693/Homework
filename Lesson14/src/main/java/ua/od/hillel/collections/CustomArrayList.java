@@ -49,7 +49,10 @@ public class CustomArrayList implements CustomList {
     }
 
     public void add(int index, String element) {
-
+        if (index >= size | index < 0) {
+            throw new ArrayIndexOutOfBoundsException("The index bigger than array length");
+        }
+        array[index] = element;
     }
 
     public boolean remove(String element) {
@@ -68,7 +71,6 @@ public class CustomArrayList implements CustomList {
         if (size < array.length / 4) {
             resizeArrayShorter();
         }
-
         return true;
     }
 
@@ -81,7 +83,22 @@ public class CustomArrayList implements CustomList {
     }
 
     public String remove(int index) {
-        return null;
+        if (index >= size | index < 0) {
+            try {
+                throw new ArrayIndexException("There is no element with this index in the list");
+            } catch (ArrayIndexException e) {
+                e.printStackTrace();
+            }
+        } else {
+            String temp = array[index];
+            for (int i = index; i < size - 1; i++) {
+                array[i] = array[i + 1];
+            }
+            size--;
+            System.out.println("The element " + temp + " has just removed from the list.");
+            return temp;
+        }
+        return "";
     }
 
     public void clear() {
@@ -97,7 +114,7 @@ public class CustomArrayList implements CustomList {
     }
 
     public int indexOf(String element) {
-        return 0;
+        return -1;
     }
 
     @Override

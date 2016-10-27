@@ -16,10 +16,17 @@ public class ArrayListMain {
         System.out.println(list);
         System.out.println();
 
-        System.out.println("Iterator example");
+        /*System.out.println("Iterator example");
         Iterator iterator = list.randomIterator();
         while (iterator.hasNext()) {
             System.out.print(iterator.next() + ", ");
         }
+        System.out.println();*/
+
+        /*list.add(6, "abc");
+        System.out.println(list);*/
+
+        list.remove(6);
+        System.out.println(list);
     }
 }
