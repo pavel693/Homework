@@ -1,11 +1,11 @@
 package ua.od.hillel.collections;
 
 import java.util.Iterator;
+import java.util.List;
 
 public class ArrayListMain {
 
     public static void main(String[] args) {
-
         CustomList list = new CustomArrayList(5);
         list.add("a");
         list.add("b");
@@ -25,8 +25,22 @@ public class ArrayListMain {
 
         /*list.add(6, "abc");
         System.out.println(list);*/
-
-        list.remove(6);
-        System.out.println(list);
+        try {
+            list.remove(3);
+            System.out.println(list);
+        } catch (ArrayIndexException message) {
+            message.printStackTrace();
+        }
+        try {
+            list.get(4);
+        } catch (ArrayIndexException message) {
+            message.printStackTrace();
+        }
+        try {
+            list.set(0, "abc");
+            System.out.println(list);
+        } catch (ArrayIndexException message) {
+            message.printStackTrace();
+        }
     }
 }

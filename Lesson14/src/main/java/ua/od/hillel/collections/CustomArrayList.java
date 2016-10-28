@@ -1,10 +1,12 @@
 package ua.od.hillel.collections;
 
+import java.lang.reflect.Array;
 import java.util.Iterator;
 import java.util.Random;
 
 public class CustomArrayList implements CustomList {
     public static final int SIZE = 10;
+    final String message = "The list don't have element with this index";
 
     private String[] array;
     private int size = 0;
@@ -50,7 +52,7 @@ public class CustomArrayList implements CustomList {
 
     public void add(int index, String element) {
         if (index >= size | index < 0) {
-            throw new ArrayIndexOutOfBoundsException("The index bigger than array length");
+            throw new ArrayIndexOutOfBoundsException("The index is bigger than array length or less then 0");
         }
         array[index] = element;
     }
@@ -62,6 +64,7 @@ public class CustomArrayList implements CustomList {
                 elementPosition = i;
             }
         }
+        if (elementPosition == -1) return false;
         if (elementPosition != -1) {
             for (int i = elementPosition; i < size - 1; i++) {
                 array[i] = array[i + 1];
@@ -82,13 +85,9 @@ public class CustomArrayList implements CustomList {
         array = arrayExt;
     }
 
-    public String remove(int index) {
+    public String remove(int index) throws ArrayIndexException {
         if (index >= size | index < 0) {
-            try {
-                throw new ArrayIndexException("There is no element with this index in the list");
-            } catch (ArrayIndexException e) {
-                e.printStackTrace();
-            }
+            throw new ArrayIndexException(message);
         } else {
             String temp = array[index];
             for (int i = index; i < size - 1; i++) {
@@ -98,19 +97,26 @@ public class CustomArrayList implements CustomList {
             System.out.println("The element " + temp + " has just removed from the list.");
             return temp;
         }
-        return "";
     }
 
     public void clear() {
 
     }
 
-    public String get(int index) {
-        return null;
+    public String get(int index) throws ArrayIndexException {
+        if (index < 0 | index >= size) {
+            throw new ArrayIndexException(message);
+        } else {
+            return array[index];
+        }
     }
 
-    public String get(int index, String element) {
-        return null;
+    public String set(int index, String element) throws ArrayIndexException {
+        if (index < 0 | index >= size) {
+            throw new ArrayIndexException(message);
+        } else {
+            return array[index] = element;
+        }
     }
 
     public int indexOf(String element) {

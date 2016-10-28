@@ -16,13 +16,13 @@ public interface CustomList {
 
     boolean remove(String element);
 
-    String remove(int index);
+    String remove(int index) throws ArrayIndexException;
 
     void clear();
 
-    String get(int index);
+    String get(int index) throws ArrayIndexException;
 
-    String get(int index, String element);
+    String set(int index, String element) throws ArrayIndexException;
 
     int indexOf(String element);
 
