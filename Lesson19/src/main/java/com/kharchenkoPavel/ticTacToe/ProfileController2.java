@@ -6,7 +6,7 @@ import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
-public class ProfileController {
+public class ProfileController2 {
 
     @FXML
     private TextField firstname;
@@ -22,8 +22,8 @@ public class ProfileController {
     }
 
     public void okAction(ActionEvent actionEvent) throws IOException {
-        application.gotoProfilePage2();
-        //application.gotoGameStart();
+        application.checkDataBase();
+        application.gotoGameStart();
     }
 
     public String getFirstname() {
