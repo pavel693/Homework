@@ -24,4 +24,21 @@ abstract class Player {
         return age;
     }
 
+    @Override
+    public String toString() {
+        return name + " " + age + " ";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Player player = (Player) o;
+
+        if (age != player.age) return false;
+        if (type != player.type) return false;
+        return name != null ? name.equals(player.name) : player.name == null;
+
+    }
 }

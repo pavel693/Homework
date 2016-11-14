@@ -8,7 +8,7 @@ public abstract class BoardGame {
 
     abstract void printBoard();
 
-    abstract String getWinner();
+    abstract Player getWinner();
 
 }
 

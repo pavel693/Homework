@@ -23,7 +23,6 @@ public class ProfileController {
 
     public void okAction(ActionEvent actionEvent) throws IOException {
         application.gotoProfilePage2();
-        //application.gotoGameStart();
     }
 
     public String getFirstname() {

@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -26,22 +27,7 @@ public class GameMain extends Application {
 
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
-        //gotoLoginPage();
         gotoProfilePage();
-    }
-
-    public void gotoLoginPage() throws IOException {
-        FXMLLoader loader =
-                new FXMLLoader(this.getClass().getResource("login.fxml"));
-        Parent root = loader.load();
-
-        LoginController controller = loader.getController();
-        controller.setApplication(this);
-
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle("Login");
-        primaryStage.show();
     }
 
     public void gotoProfilePage() throws IOException {
@@ -73,9 +59,21 @@ public class GameMain extends Application {
     }
 
     public void showStatistic() {
-        HBox hBox = new HBox();
-        TextArea textArea = new TextArea();
-        textArea.setPrefSize(300, 300);
+        TextArea textField = new TextArea();
+        textField.setPrefSize(300, 300);
+        try {
+            textField.setText(jdbcConnection.getStatistic(jdbcConnection.jdbcConnection()));
+        } catch (SQLException | IOException e) {
+            e.printStackTrace();
+        }
+        HBox hBox = new HBox(textField);
+        hBox.setAlignment(Pos.CENTER);
+        hBox.setPrefSize(310, 310);
+
+        Scene scene = new Scene(hBox);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Statistics");
+        primaryStage.show();
     }
 
     public void checkDataBase() {
@@ -84,10 +82,10 @@ public class GameMain extends Application {
         try {
             LinkedList<User> linkedList = jdbcConnection.getPlayers(jdbcConnection.jdbcConnection());
             if (!linkedList.contains(firstUser)) {
-                jdbcConnection.addPlayer(jdbcConnection.jdbcConnection(), profileController.getFirstname(), Integer.parseInt(profileController.getAge()));
+                jdbcConnection.addPlayer(jdbcConnection.jdbcConnection(), firstUser.getName(), firstUser.getAge());
             }
             if (!linkedList.contains(secondUser)) {
-                jdbcConnection.addPlayer(jdbcConnection.jdbcConnection(), profileController2.getFirstname(), Integer.parseInt((profileController2.getAge())));
+                jdbcConnection.addPlayer(jdbcConnection.jdbcConnection(), secondUser.getName(), secondUser.getAge());
             }
         } catch (SQLException | IOException e) {
             e.printStackTrace();
@@ -122,7 +120,33 @@ public class GameMain extends Application {
                             }
                         }
                         if (ticTacToe.gameFinished()) {
-                            textField.setText(ticTacToe.getWinner());
+                            if (ticTacToe.getWinner() != null) {
+                                textField.setText("Winner is " + ticTacToe.getWinner().toString());
+                            } else {
+                                textField.setText("Draw");
+                                try {
+                                    jdbcConnection.addResultToStatistic(jdbcConnection.jdbcConnection(), firstPlayer.getName(), firstPlayer.getAge(), secondPlayer.getName(), secondPlayer.getAge(), Result.DRAW);
+                                    jdbcConnection.addResultToGameData(jdbcConnection.jdbcConnection(), firstPlayer.getName(), firstPlayer.getAge(), secondPlayer.getName(), secondPlayer.getAge(), Result.DRAW);
+                                } catch (SQLException | IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            if (firstPlayer.equals(ticTacToe.getWinner())) {
+                                try {
+                                    jdbcConnection.addResultToStatistic(jdbcConnection.jdbcConnection(), firstPlayer.getName(), firstPlayer.getAge(), secondPlayer.getName(), secondPlayer.getAge(), Result.FIRST_PLAYER);
+                                    jdbcConnection.addResultToGameData(jdbcConnection.jdbcConnection(), firstPlayer.getName(), firstPlayer.getAge(), secondPlayer.getName(), secondPlayer.getAge(), Result.FIRST_PLAYER);
+                                } catch (SQLException | IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                            if (secondPlayer.equals(ticTacToe.getWinner())) {
+                                try {
+                                    jdbcConnection.addResultToStatistic(jdbcConnection.jdbcConnection(), secondPlayer.getName(), secondPlayer.getAge(), firstPlayer.getName(), firstPlayer.getAge(), Result.SECOND_PLAYER);
+                                    jdbcConnection.addResultToGameData(jdbcConnection.jdbcConnection(), firstPlayer.getName(), firstPlayer.getAge(), secondPlayer.getName(), secondPlayer.getAge(), Result.SECOND_PLAYER);
+                                } catch (SQLException | IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
                         }
                     }
                 });
@@ -148,16 +172,12 @@ public class GameMain extends Application {
         finishButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-
+                showStatistic();
             }
         });
         HBox hBox = new HBox(startButton, finishButton);
         gridPane.addRow(4, hBox);
         gridPane.setColumnSpan(hBox, 3);
-        TextField lastTextField = new TextField();
-        lastTextField.setPrefSize(300, 50);
-        gridPane.addRow(5, lastTextField);
-        gridPane.setColumnSpan(lastTextField, 3);
         Scene scene = new Scene(gridPane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Tic Tac Toe");

@@ -162,7 +162,11 @@ public class Board {
         System.out.println("╚═════════╝");
     }
 
-    public String getWinner() {
+    public Player getWinner() {
+        return findWinner();
+    }
+
+    public String getWinnerString() {
         Player player = findWinner();
         if (player != null) {
             return "Winner is " + player.getName() + " " + player.getAge();

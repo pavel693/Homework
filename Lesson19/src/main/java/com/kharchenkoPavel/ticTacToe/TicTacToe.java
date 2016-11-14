@@ -25,7 +25,7 @@ public class TicTacToe extends BoardGame {
         board.printBoard();
     }
 
-    String getWinner() {
+    Player getWinner() {
         return board.getWinner();
     }
 }
