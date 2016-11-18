@@ -15,19 +15,19 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-@WebServlet("/info")
-public class ServletsMain extends HttpServlet {
+@WebServlet("/subjects")
+public class ServletSubjects extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
-        List<Student> studentList = getStudents();
-        for (Student student : studentList) {
-            out.println(student.toString());
+        List<Subject> subjects = getSubjects();
+        for (Subject subject : subjects) {
+            out.println(subject.toString());
         }
     }
 
-    public List<Student> getStudents() {
+    public List<Subject> getSubjects() {
         SessionFactory sessionFactory = new Configuration()
                 .configure()
                 .buildSessionFactory();
@@ -36,11 +36,11 @@ public class ServletsMain extends HttpServlet {
 
         Transaction transaction = session.beginTransaction();
 
-        Query query = session.createQuery("from Student");
-        List<Student> students = query.getResultList();
+        Query query = session.createQuery("from Subject");
+        List<Subject> subjects = query.getResultList();
 
         transaction.commit();
         session.close();
-        return students;
+        return subjects;
     }
 }
