@@ -10,12 +10,17 @@ import java.util.List;
 
 public class Servlets {
 
-    public List getFromDataBase(String queryHql) {
-        SessionFactory sessionFactory = new Configuration()
-                .configure()
-                .buildSessionFactory();
+    private static final SessionFactory INSTANCE = new Configuration()
+            .configure()
+            .buildSessionFactory();
 
-        Session session = sessionFactory.openSession();
+    public static SessionFactory getInstance() {
+        return INSTANCE;
+    }
+
+    public List getFromDataBase(String queryHql) {
+
+        Session session = getInstance().openSession();
 
         Transaction transaction = session.beginTransaction();
 
