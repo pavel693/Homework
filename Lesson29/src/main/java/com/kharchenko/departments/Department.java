@@ -21,15 +21,6 @@ public class Department {
         prorectorat.setHighDepartment(department);
     }
 
-    public void printStructure() {
-        System.out.println(name);
-        for (Prorectorat prorectorat : prorectorates) {
-            System.out.print(prorectorat.getName() + " ");
-        }
-        System.out.println();
-        prorectorates.get(0).printStructure();
-    }
-
     @Override
     public String toString() {
         return name + "\n" + prorectorates.toString();

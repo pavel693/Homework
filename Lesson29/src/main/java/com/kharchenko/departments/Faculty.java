@@ -29,14 +29,6 @@ public class Faculty extends Prorectorat {
     }
 
     @Override
-    public void printStructure() {
-        for (Cathedra cathedra : cathedras) {
-            System.out.print(cathedra.getName() + " ");
-        }
-        System.out.println();
-    }
-
-    @Override
     public String toString() {
         return super.getName() + cathedras.toString();
     }
