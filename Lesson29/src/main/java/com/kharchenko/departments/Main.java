@@ -21,32 +21,34 @@ public class Main {
         department.addProrectorates(prorectorat2, department);
         department.addProrectorates(prorectorat3, department);
 
-        prorectorat1.addFaculty(faculty1, prorectorat1);
-        prorectorat1.addFaculty(faculty2, prorectorat1);
-        prorectorat1.addFaculty(faculty3, prorectorat1);
+        prorectorat1.addProrectorates(faculty1, prorectorat1);
+        prorectorat1.addProrectorates(faculty2, prorectorat1);
+        prorectorat1.addProrectorates(faculty3, prorectorat1);
 
-        prorectorat2.addFaculty(faculty1, prorectorat2);
-        prorectorat2.addFaculty(faculty2, prorectorat2);
-        prorectorat2.addFaculty(faculty3, prorectorat2);
+        prorectorat2.addProrectorates(faculty1, prorectorat2);
+        prorectorat2.addProrectorates(faculty2, prorectorat2);
+        prorectorat2.addProrectorates(faculty3, prorectorat2);
 
-        prorectorat3.addFaculty(faculty1, prorectorat3);
-        prorectorat3.addFaculty(faculty2, prorectorat3);
-        prorectorat3.addFaculty(faculty3, prorectorat3);
+        prorectorat3.addProrectorates(faculty1, prorectorat3);
+        prorectorat3.addProrectorates(faculty2, prorectorat3);
+        prorectorat3.addProrectorates(faculty3, prorectorat3);
 
-        faculty1.addCathedra(cathedra1, faculty1);
-        faculty1.addCathedra(cathedra2, faculty1);
-        faculty1.addCathedra(cathedra3, faculty1);
+        faculty1.addProrectorates(cathedra1, faculty1);
+        faculty1.addProrectorates(cathedra2, faculty1);
+        faculty1.addProrectorates(cathedra3, faculty1);
 
-        faculty2.addCathedra(cathedra1, faculty2);
-        faculty2.addCathedra(cathedra2, faculty2);
-        faculty2.addCathedra(cathedra3, faculty2);
+        faculty2.addProrectorates(cathedra1, faculty2);
+        faculty2.addProrectorates(cathedra2, faculty2);
+        faculty2.addProrectorates(cathedra3, faculty2);
 
-        faculty3.addCathedra(cathedra1, faculty3);
-        faculty3.addCathedra(cathedra2, faculty3);
-        faculty3.addCathedra(cathedra3, faculty3);
+        faculty3.addProrectorates(cathedra1, faculty3);
+        faculty3.addProrectorates(cathedra2, faculty3);
+        faculty3.addProrectorates(cathedra3, faculty3);
 
-        System.out.println(department.toString());
+        System.out.println(department.print());
+        System.out.println(prorectorat1.print());
+        System.out.println(prorectorat1.toString());
         System.out.println(faculty1.toString());
-        cathedra3.getHighDepartment().getHighDepartment().getHighDepartment();
+        System.out.println(cathedra1.toString());
     }
 }
