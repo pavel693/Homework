@@ -8,7 +8,7 @@ import java.util.Queue;
 public class Department {
 
     private String name;
-    private final List<Prorectorat> prorectorates = new ArrayList<>();
+    private final List<Department> departments = new ArrayList<>();
     private Department highDepartment;
 
     public Department(String name) {
@@ -20,7 +20,7 @@ public class Department {
     }
 
     public void addProrectorates(Prorectorat prorectorat, Department department) {
-        prorectorates.add(prorectorat);
+        departments.add(prorectorat);
         prorectorat.setHighDepartment(department);
     }
 
@@ -32,23 +32,23 @@ public class Department {
         this.highDepartment = department;
     }
 
-    List<Prorectorat> getList() {
-        return prorectorates;
+    List<Department> getList() {
+        return departments;
     }
 
     public String print() {
-        Queue<Prorectorat> queue = new LinkedList<>();
+        Queue<Department> queue = new LinkedList<>();
         StringBuilder builder = new StringBuilder();
-        List<Prorectorat> temp;
+        List<Department> temp;
         String tempClass = "";
         builder.append(name + "\n");
-        for (int i = 0; i < prorectorates.size(); i++) {
-            queue.add(prorectorates.get(i));
-            builder.append(prorectorates.get(i).getName());
-            if (i < prorectorates.size() - 1) {
+        for (int i = 0; i < departments.size(); i++) {
+            queue.add(departments.get(i));
+            builder.append(departments.get(i).getName());
+            if (i < departments.size() - 1) {
                 builder.append(", ");
             }
-            tempClass = String.valueOf(prorectorates.getClass());
+            tempClass = String.valueOf(departments.getClass());
         }
         builder.append("\n");
 
