@@ -6,7 +6,6 @@ import java.io.IOException;
 public class FirstFilter implements Filter {
 
     public void init(FilterConfig filterConfig) throws ServletException {
-
     }
 
     public void doFilter(ServletRequest servletRequest,
@@ -22,10 +21,8 @@ public class FirstFilter implements Filter {
             System.out.println("incorrect user name and password");
             throw new ServletException("incorrect user name and password");
         }
-
     }
 
     public void destroy() {
-
     }
 }

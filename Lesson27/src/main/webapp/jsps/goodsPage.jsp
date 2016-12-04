@@ -2,7 +2,7 @@
 
 <html>
     <body>
-        <h1>Students List</h1>
+        <h1>Books List</h1>
         <c:forEach items="${books}" var="someBook">
                     <p>
                         <c:out value="${someBook.name}" />

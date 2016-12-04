@@ -1,15 +1,30 @@
 package com.kharchenko.shop.books;
 
 public class User {
-    private String name;
+    private String firstName;
+    private String secondName;
     private int age;
 
-    public String getName() {
-        return name;
+    public User(String firstName, String secondName, int age) {
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.age = age;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public int getAge() {
