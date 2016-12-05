@@ -10,9 +10,11 @@ public class Grade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private int student_id;
+    @ManyToOne
+    private Student student;
 
-    private int subject_id;
+    @ManyToOne
+    private Subject subject;
 
     private int grade;
 
@@ -24,20 +26,20 @@ public class Grade {
         this.id = id;
     }
 
-    public int getStudent_id() {
-        return student_id;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setStudent_id(int student_id) {
-        this.student_id = student_id;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public int getSubject_id() {
-        return subject_id;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public void setSubject_id(int subject_id) {
-        this.subject_id = subject_id;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
 
     public int getGrade() {
@@ -50,6 +52,6 @@ public class Grade {
 
     @Override
     public String toString() {
-        return id + " " + student_id + " " + subject_id + " " + grade;
+        return id + " " + student.getFname() + " " + student.getLname() + " " + subject.getName() + " " + grade;
     }
 }
