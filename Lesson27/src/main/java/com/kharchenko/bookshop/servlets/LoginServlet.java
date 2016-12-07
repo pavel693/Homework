@@ -1,4 +1,4 @@
-package com.kharchenko.shop.books;
+package com.kharchenko.bookshop.servlets;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

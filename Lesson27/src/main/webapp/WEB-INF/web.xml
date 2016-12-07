@@ -8,7 +8,7 @@
 
     <filter>
         <filter-name>FirstFilter</filter-name>
-        <filter-class>com.kharchenko.shop.books.FirstFilter</filter-class>
+        <filter-class>com.kharchenko.bookshop.servlets.LoginFilter</filter-class>
     </filter>
 
     <filter-mapping>
