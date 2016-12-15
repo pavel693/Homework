@@ -1,23 +1,34 @@
 package com.kharchenko.bookshop.servlets;
 
+import com.kharchenko.bookshop.persistence.Book;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        PrintWriter out = resp.getWriter();
+        RequestDispatcher dispatcher = req.getRequestDispatcher("jsps/Login.jsp");
 
         String login = req.getParameter("login");
-        String password = req.getParameter("password");
 
-        out.println(login + " " + password);
+        Cookie cookie = new Cookie("login", login);
+        cookie.setMaxAge(30 * 60);
+        cookie.setPath("/context");
+        resp.addCookie(cookie);
+
+        List<Book> books = new ArrayList<>();
+
+        HttpSession session = req.getSession(true);
+        session.setMaxInactiveInterval(30 * 60);
+        session.setAttribute(login, books);
+        dispatcher.forward(req, resp);
     }
 }

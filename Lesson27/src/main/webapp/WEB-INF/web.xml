@@ -7,12 +7,12 @@
     <displayname>bookshop</displayname>
 
     <filter>
-        <filter-name>FirstFilter</filter-name>
+        <filter-name>LoginFilter</filter-name>
         <filter-class>com.kharchenko.bookshop.servlets.LoginFilter</filter-class>
     </filter>
 
     <filter-mapping>
-        <filter-name>FirstFilter</filter-name>
+        <filter-name>LoginFilter</filter-name>
         <url-pattern>/login</url-pattern>
     </filter-mapping>
 

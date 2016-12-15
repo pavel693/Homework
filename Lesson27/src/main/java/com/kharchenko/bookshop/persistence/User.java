@@ -15,6 +15,8 @@ public class User {
 
     private int age;
 
+    private String email;
+
     private String login;
 
     private String pass;
@@ -49,6 +51,14 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getLogin() {

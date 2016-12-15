@@ -1,9 +1,14 @@
 package com.kharchenko.bookshop.servlets;
 
+import com.kharchenko.bookshop.credentials.Validation;
+
 import javax.servlet.*;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class LoginFilter implements Filter {
+
+    private Validation validation;
 
     public void init(FilterConfig filterConfig) throws ServletException {
     }
@@ -15,11 +20,13 @@ public class LoginFilter implements Filter {
         String login = servletRequest.getParameter("login");
         String password = servletRequest.getParameter("password");
 
-        if (login.equals("John") && password.equals("secret")) {
+        validation = new Validation(login, password);
+
+        if (validation.userValidation()) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else {
-            System.out.println("incorrect user name and password");
-            throw new ServletException("incorrect user name and password");
+            HttpServletResponse resp = (HttpServletResponse) servletResponse;
+            resp.sendRedirect("/context/forgotpassword.html");
         }
     }
 

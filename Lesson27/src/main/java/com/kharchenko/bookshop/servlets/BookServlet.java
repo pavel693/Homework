@@ -12,17 +12,19 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/goods")
-public class GoodsPage extends HttpServlet {
+@WebServlet("/bookpage")
+public class BookServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("jsps/goodsPage.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("jsps/Book.jsp");
         Connection connection = new Connection();
+        int id = Integer.parseInt(req.getParameter("id"));
+        String hql = "from Book b where b.id=" + id;
 
-        List<Book> books = connection.getFromDataBase("from Book");
-
-        req.setAttribute("books", books);
+        List<Book> books = connection.getFromDataBase(hql);
+        Book book = books.get(0);
+        req.setAttribute("book", book);
 
         dispatcher.forward(req, resp);
     }

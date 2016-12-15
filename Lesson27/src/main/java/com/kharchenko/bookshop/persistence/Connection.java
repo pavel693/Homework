@@ -28,9 +28,7 @@ public class Connection {
     }
 
     public List getFromDataBase(String queryHql) {
-
         Session session = getInstance().openSession();
-
         Transaction transaction = session.beginTransaction();
 
         Query query = session.createQuery(queryHql);
@@ -39,5 +37,13 @@ public class Connection {
         transaction.commit();
         session.close();
         return list;
+    }
+
+    public void insertIntoUser(User user) {
+        Session session = getInstance().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.save(user);
+        transaction.commit();
+        session.close();
     }
 }
